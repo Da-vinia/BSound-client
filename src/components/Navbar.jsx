@@ -21,8 +21,11 @@ function Navbar() {
         <>
           <Link to="/rentals">
             <button>Something to rent</button>
-          </Link>        
-          <button>Logout</button>
+          </Link>  
+         
+            <button onClick={logOutUser} >Logout</button>
+                
+          
         </>
       )}
  
