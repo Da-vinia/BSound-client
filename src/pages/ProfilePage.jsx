@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import DefaultAvatar from "../assets/images/avatar-default.png";
 import EditIcon from "../assets/images/icons/edit-icon.png"
 import EditProfile from "../components/EditProfile";
+import ProductUserList from "../components/ProductUserList";
 
 const API_URL = "http://localhost:5005";
 
@@ -62,11 +63,13 @@ function ProfilePage(props) {
                         onCloseEdit={handleCloseEdit}
                         showForm={showEditForm}
                     />
-                }
-                
+                }    
             </div>
 
             <button>My Bookings</button>
+            <div>
+                {/* <ProductUserList userId={userId}/> */}
+            </div>
             <button>My Listings</button>
             <button>My Sound Gears</button>
         </div>
