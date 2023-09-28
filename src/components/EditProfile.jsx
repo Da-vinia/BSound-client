@@ -7,7 +7,7 @@ import CloseBtn from "../assets/images/icons/icon-close-btn.png"
  
 const API_URL = "http://localhost:5005";
  
-function EditProfile(props) {
+function EditProfile({ onCloseEdit }) {
 
     const {userId} = useParams();
     const [email, setEmail] = useState("");
@@ -16,7 +16,6 @@ function EditProfile(props) {
     const [avatar, setAvatar] = useState("../assets/images/avatar-default.png");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [showForm, setShowForm] = useState(false);
-   
 
     const navigate = useNavigate();
     
@@ -42,7 +41,8 @@ function EditProfile(props) {
         .then((response) => {
             console.log(response)
             console.log(formData)
-            navigate('/profile');
+            // navigate('/profile');
+            onCloseEdit();
         })
         .catch((error) => {
             const errorDescription = error.response.data.message;
@@ -52,7 +52,9 @@ function EditProfile(props) {
     };
 
     const handleCloseEditForm = () => {
-        setShowForm(false);
+        // setShowForm(false);
+        // props.onCloseEdit();
+        onCloseEdit();
     }
 
     return(
