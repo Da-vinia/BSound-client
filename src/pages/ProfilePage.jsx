@@ -13,14 +13,14 @@ function ProfilePage(props) {
     const { userId } = useParams();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [avatar, setAvatar] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
     const [showEditForm, setShowEditForm] = useState(false);
     
-
-    useEffect(()=> {
+    const handleProfileFetch = () => {
         const storedToken = localStorage.getItem('authToken');
-        
         axios.get(`${API_URL}/profile/`, { headers: { Authorization: `Bearer ${storedToken}`} })
         .then((res)=> {
             console.log(res)
@@ -28,12 +28,16 @@ function ProfilePage(props) {
             const userData = res.data.user;
             setName(userData.name);
             setEmail(userData.email);
-            
+            setAvatar(userData.avatar);
+            setPassword(userData.password);
         })
         .catch((err)=> {
             console.log(err)
         })
+    }
 
+    useEffect(()=> {
+        handleProfileFetch()
     }, [])
 
     const handleOpenEdit = () => {
@@ -46,8 +50,8 @@ function ProfilePage(props) {
 
     return(
         <div className="ProfileContainer">
-            <div className="avatar-wrapper">
-                <img src={DefaultAvatar} alt="default avatar" />
+            <div className="avatar">
+                <img id="avatar" src={avatar} alt="default avatar" />
             </div>
             <div className="edit-icon-wrapper">
                 <img onClick={handleOpenEdit} src={EditIcon} alt="edit icon" />
@@ -62,6 +66,7 @@ function ProfilePage(props) {
                         userId={props.userId} 
                         onCloseEdit={handleCloseEdit}
                         showForm={showEditForm}
+                        handleProfileFetch={handleProfileFetch}
                     />
                 }    
             </div>
