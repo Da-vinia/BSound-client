@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Accordion, Card, Button } from "react-bootstrap";
+import { AuthContext } from "../context/auth.context";  
+import ProductCard from "./ProductCard";
 
-function ProductUserList({ userId }) {
+function ProductUserList ({ userId, productId }) {
   const [userProducts, setUserProducts] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5005/product/user/${userId}`)
+    const storedToken = localStorage.getItem('authToken');
+
+    axios.get(`http://localhost:5005/profile`, { headers: { Authorization: `Bearer ${storedToken}`} })
       .then((response) => {
         setUserProducts(response.data);
       })
@@ -26,14 +30,18 @@ function ProductUserList({ userId }) {
         <Accordion.Collapse eventKey="0">
           <Card.Body>
             <ul>
-              {userProducts.map((product) => (
+            {userProducts.map((product) => (
+            <ProductCard key={product._id} {...product} />
+        ))}
+              {/* {userProducts.map((product) => (
                 <li key={product._id}>{product.productName}</li>
-              ))}
+              ))} */}
             </ul>
           </Card.Body>
         </Accordion.Collapse>
       </Card>
     </Accordion>
+
   );
 }
 

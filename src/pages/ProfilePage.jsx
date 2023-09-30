@@ -3,19 +3,23 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";  
 import DefaultAvatar from "../assets/images/avatar-default.png";
-import EditIcon from "../assets/images/icons/edit-icon.png"
+import EditIcon from "../assets/images/icons/edit-icon.png";
 import EditProfile from "../components/EditProfile";
 import ProductUserList from "../components/ProductUserList";
+import ProductCard from "../components/ProductCard";
 
 const API_URL = "http://localhost:5005";
 
 function ProfilePage(props) {
-    const { userId } = useParams();
+    // const { userId } = useParams();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [avatar, setAvatar] = useState("");
     const [isEditing, setIsEditing] = useState(false);
+
+    const [userId, setUserId] = useState("");
+    const [userProducts, setUserProducts] = useState([]);
 
     const [showEditForm, setShowEditForm] = useState(false);
     
@@ -26,10 +30,13 @@ function ProfilePage(props) {
             console.log(res)
             // const userData = res.userData;
             const userData = res.data.user;
+            setUserId(userData._id);
             setName(userData.name);
             setEmail(userData.email);
             setAvatar(userData.avatar);
             setPassword(userData.password);
+
+            setUserProducts(userData.products); 
         })
         .catch((err)=> {
             console.log(err)
@@ -71,12 +78,12 @@ function ProfilePage(props) {
                 }    
             </div>
 
-            <button>My Bookings</button>
+            <button>My Sound Gears</button>
             <div>
-                {/* <ProductUserList userId={userId}/> */}
+                {/* <ProductUserList userId={props.userId} /> */}
             </div>
             <button>My Listings</button>
-            <button>My Sound Gears</button>
+            <button>My Bookings</button>
         </div>
     )
 }

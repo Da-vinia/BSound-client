@@ -19,13 +19,15 @@ function Navbar() {
       
       {isLoggedIn && (
         <>
-          <Link to="/rentals">
-            <button>Something to rent</button>
+          <Link to="/products">
+            <button>Soundgear Rentals</button>
           </Link>  
          
             <button onClick={logOutUser} >Logout</button>
           
             <Link to="/profile"> <button>Profile</button> </Link>
+
+            <Link to="/add"> <button>Add your soundgear</button> </Link>
           
         </>
       )}
