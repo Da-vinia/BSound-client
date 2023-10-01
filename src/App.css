@@ -113,3 +113,8 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.EditProductContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

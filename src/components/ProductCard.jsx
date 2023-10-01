@@ -60,7 +60,26 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
           mediaUrl: e.target.value,
         });
       };
-
+    
+      const handleCancel = () => {
+        setEditedProductData({
+          productName,
+          description,
+          pricePerDay,
+          category: "",
+          availability: {
+            startDate: null,
+            endDate: null,
+          },
+          mediaUrl,
+          location: {
+            city: "",
+            district: "",
+          },
+          contactDetails: "",
+        });
+        setIsEditing(false);
+      };
 
     const handleDelete = () => {
         const storedToken = localStorage.getItem('authToken');
@@ -89,7 +108,7 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
 
             {isEditing ? (
                 
-                <div>
+                <div className="EditProductContainer">
                 <label htmlFor="productName">Product Name:</label>
                 <input
                     type="text"
@@ -223,6 +242,7 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
                     onChange={handleImageChange}
                 />
                 <button onClick={handleSave}>Save</button>
+                <button onClick={handleCancel}>Cancel</button>
             </div>
 
 
@@ -232,7 +252,10 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
                 <img src={mediaUrl} alt={productName} />
                 <p>{description}</p>
                 <h4>{pricePerDay} <span>EUR/day</span></h4>
-                <button>Rent</button>
+                <Link to={`/renting/${_id}`}>
+                    <button>Rent</button>
+                </Link>
+               
             </div>
             )}
             

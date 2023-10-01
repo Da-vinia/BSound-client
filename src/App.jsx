@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import ProfilePage from "./pages/ProfilePage";
 import ProductsPage from "./pages/ProductsPage";
 import AddProductPage from "./pages/AddProductPage";
+import RentingPage from "./pages/RentingPage";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={ <ProfilePage /> } />
           <Route path="/products" element={ <ProductsPage /> } />
           <Route path="/add" element={ <AddProductPage /> } />
+          <Route path="/renting/:productId" element={ <RentingPage /> } />
 
 
 

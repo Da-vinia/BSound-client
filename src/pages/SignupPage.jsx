@@ -26,7 +26,8 @@ function SignupPage(props) {
     
         axios.post(`${API_URL}/auth/signup`, requestBody)
         .then((response) => {
-            navigate('/login');
+            console.log('Response from server:', response);
+            navigate('/products');
         })
         .catch((error) => {
             const errorDescription = error.response.data.message;

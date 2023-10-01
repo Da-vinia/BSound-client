@@ -10,7 +10,7 @@ function HomePage() {
                 <p>Explore, rent, and connect with the vibrant music scene of the city 
                     at BSound (SoundRaver) Berlin. The party starts here... 
                 </p>
-                <Link to={"/rentals"}> Explore Now </Link>
+                <Link to={"/products"}> Explore Now </Link>
             </div>
             
         </div>
