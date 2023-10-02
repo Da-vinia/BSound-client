@@ -21,78 +21,85 @@ function AddProductPage() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     // const [mediaUrl, setMediaUrl] = useState([]);
-    const [mediaUrl, setMediaUrl] = useState("");
+    // const [mediaUrl, setMediaUrl] = useState("");
+    const [imageFile, setImageFile] = useState(null); 
 
     const navigate = useNavigate();
-
-    // const handleAddProduct = (e) => {
-    //     e.preventDefault();
-    
-    //     const formData = new FormData();
-    //     formData.append("productName", productName);
-    //     formData.append("category", category);
-    //     formData.append("description", description);
-    //     formData.append("availability.startDate", startDate);
-    //     formData.append("availability.endDate", endDate);
-    //     formData.append("pricePerDay", pricePerDay);
-    //     formData.append("locationCity", locationCity);
-    //     formData.append("locationDistrict", locationDistrict);
-    //     formData.append("contactDetails", contactDetails);
-    
-    //     formData.append("mediaUrl", mediaUrl);
-    
-    //     const storedToken = localStorage.getItem('authToken');
-    
-    //     axios
-    //         .post(`${API_URL}/products`, formData, { 
-    //             headers: { 
-    //                 Authorization: `Bearer ${storedToken}`,
-    //                 "Content-Type": "multipart/form-data"  
-    //             }
-    //         })
-    //         .then((response) => {
-    //             console.log("Product created successfully:", response.data);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error adding the product:", error);
-    //         });
-    // };
 
     const handleAddProduct = (e) => {
         e.preventDefault();
     
-        const newProduct = {
-          productName,
-          category,
-          description,
-          // availableDays,
-          availability: {
-            startDate,
-            endDate,
-          },
-        //   mediaUrl: [mediaUrl], 
-          mediaUrl,
-          pricePerDay,
-          location: {
-            city: locationCity,
-            district: locationDistrict,
-          },
-          contactDetails,
-        };
+        const formData = new FormData();
+        formData.append("productName", productName);
+        formData.append("category", category);
+        formData.append("description", description);
+        formData.append("startDate", startDate);
+        formData.append("endDate", endDate);
+        formData.append("pricePerDay", pricePerDay);
+        formData.append("locationCity", locationCity);
+        formData.append("locationDistrict", locationDistrict);
+        formData.append("contactDetails", contactDetails);
+
+         if (imageFile) {
+            formData.append("mediaUrl", imageFile);
+        }
+    
+        
     
         const storedToken = localStorage.getItem('authToken');
-
+    
         axios
-            .post(`${API_URL}/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}`} })
+            .post(`${API_URL}/products`, formData, { 
+                headers: { 
+                    Authorization: `Bearer ${storedToken}`
+                    // "Content-Type": "multipart/form-data"  
+                }
+            })
+
             .then((response) => {
                 console.log("Product created successfully:", response.data);
-                navigate('/products');
-                
+                navigate('/products'); 
             })
             .catch((error) => {
                 console.error("Error adding the product:", error);
             });
-  };
+    };
+
+//     const handleAddProduct = (e) => {
+//         e.preventDefault();
+    
+//         const newProduct = {
+//           productName,
+//           category,
+//           description,
+//           // availableDays,
+//           availability: {
+//             startDate,
+//             endDate,
+//           },
+//         //   mediaUrl: [mediaUrl], 
+//           mediaUrl,
+//           pricePerDay,
+//           location: {
+//             city: locationCity,
+//             district: locationDistrict,
+//           },
+//           contactDetails,
+//         };
+    
+//         const storedToken = localStorage.getItem('authToken');
+
+//         axios
+//             .post(`${API_URL}/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}`} })
+//             .then((response) => {
+//                 console.log("Product created successfully:", response.data);
+//                 navigate('/products');
+                
+//             })
+//             .catch((error) => {
+//                 console.error("Error adding the product:", error);
+//             });
+//   };
 
 
 // const handleAddProduct = (e) => {
@@ -133,14 +140,12 @@ function AddProductPage() {
 
 const handleImage = (e) => {
     const selectedImage = e.target.files[0];
-    setMediaUrl(selectedImage);
+   setImageFile(selectedImage);
 
-    if (selectedImage) {
-        const previewURL = URL.createObjectURL(selectedImage);
-        setMediaUrl(previewURL);
-    } else {
-        setMediaUrl(mediaUrl); 
-    }
+    // if (selectedImage) {
+    //     const previewURL = URL.createObjectURL(selectedImage);
+    //     setImageFile(previewURL);
+    // } 
 };
 
 

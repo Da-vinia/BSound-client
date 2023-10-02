@@ -14,7 +14,10 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
     const { user } = useContext(AuthContext);
     const isOwner = user && owner && user._id === owner._id;
 
+    const [imageFile, setImageFile]= useState(null); 
+
     const [isEditing, setIsEditing] = useState(false);
+
     const [editedProductData, setEditedProductData] = useState({
     productName,
     description,
@@ -26,8 +29,8 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
     }, 
     mediaUrl,
     location: {
-        city: "",
-        district: "",
+        locationCity: "",
+        locationDistrict: "",
     }, 
     contactDetails: "",
   });
@@ -45,19 +48,40 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
             headers: { Authorization: `Bearer ${storedToken}` },
           })
           .then((response) => {
-            console.log("Producto actualizado:", response.data);
+            console.log("Product updatesd:", response.data);
             setIsEditing(false);
             onUpdateProduct(response.data);
           })
           .catch((error) => {
-            console.error("Error al actualizar el producto:", error);
+            console.error("Error updating the product:", error);
           });
       };
 
+    // const handleImageChange = (e) => {
+        
+    //     setEditedProductData({
+    //       ...editedProductData,
+    //      mediaUrl: e.target.file[0];
+        
+    //     });
+
+    //   };
+
+    // const handleImageChange = (e) => {
+    //     const selectedImage = e.target.files[0];
+      
+    //     setEditedProductData({
+    //       ...editedProductData,
+    //       mediaUrl: selectedImage ? URL.createObjectURL(selectedImage) : "",
+    //     });
+      
+    //   };
+
     const handleImageChange = (e) => {
+        const selectedImage = e.target.files[0];
         setEditedProductData({
           ...editedProductData,
-          mediaUrl: e.target.value,
+          mediaUrl: selectedImage ? URL.createObjectURL(selectedImage) : ""
         });
       };
     
@@ -102,7 +126,17 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
                     ) : ( */}
                     <img src={EditIconBlack} onClick={handleEdit} />
                     {/* )} */}
-                    <img src={DeleteBnt} onClick={handleDelete} />      
+                    <img src={DeleteBnt} onClick={handleDelete} />  
+
+                    <div>
+                <h2>{productName}</h2>
+                <img src={mediaUrl} alt={productName} />
+                <p>{description}</p>
+                <h4>{pricePerDay} <span>EUR/day</span></h4>
+                
+               
+            </div> 
+                     
                 </div>
             )}
 
@@ -252,6 +286,7 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
                 <img src={mediaUrl} alt={productName} />
                 <p>{description}</p>
                 <h4>{pricePerDay} <span>EUR/day</span></h4>
+                
                 <Link to={`/renting/${_id}`}>
                     <button>Rent</button>
                 </Link>

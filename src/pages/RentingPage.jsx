@@ -11,10 +11,12 @@ function RentingPage() {
     const { user } = useContext(AuthContext);
     const { productId } = useParams();
     const [product, setProduct] = useState({});
-    // const [startDate, setStartDate] = useState(null);
-    // const [endDate, setEndDate] = useState(null);
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());     
+    const [booked,setBooked] = useState([])
+    const [owner, setOwner] = useState("");
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    // const [startDate, setStartDate] = useState(new Date());
+    // const [endDate, setEndDate] = useState(new Date());     
     const [isAvailable, setIsAvailable] = useState(true);
     const [bookingConfirmed, setBookingConfirmed] = useState(false);
   
@@ -22,6 +24,7 @@ function RentingPage() {
       axios
         .get(`${API_URL}/products/${productId}`)
         .then((response) => {
+
           setProduct(response.data);
         })
         .catch((error) => {
@@ -31,9 +34,21 @@ function RentingPage() {
   
     const handleConfirmBooking = () => {
       const storedToken = localStorage.getItem("authToken");
+
+      const isDateAvailable = product.bookedDates ? product.bookedDates.every((booking) => {
+        return (
+          startDate >= new Date(booking.endDate) || endDate <= new Date(booking.startDate)
+        );
+      }) : true;
+    
+      if (!isDateAvailable) {
+        setIsAvailable(false);
+        return;
+      }
+    
       axios
         .post(
-          `${API_URL}/bookings`,
+          `${API_URL}/booking`,
           {
             startDate,
             endDate,
@@ -46,12 +61,17 @@ function RentingPage() {
         )
         .then((response) => {
           setBookingConfirmed(true);
-          const updatedProduct = { ...product };
-          updatedProduct.bookedDates.push({
-            startDate,
-            endDate,
-          });
-          setProduct(updatedProduct);
+        //   const updatedProduct = [...product];
+        //   updatedProduct.bookedDates.push({
+        //     startDate,
+        //     endDate,
+        //   });
+        //   setProduct(updatedProduct);
+        
+
+        setBooked(response.data.savedBooking)
+        setOwner(response.data.productToUpdate.contactDetails)
+        console.log(response)
         })
         .catch((error) => {
           console.error("Error creating booking:", error);
@@ -76,7 +96,13 @@ function RentingPage() {
               <img src={product.mediaUrl} alt={product.productName} />
               <p>Dates: {startDate.toDateString()} to {endDate.toDateString()}</p>
               <p>Total Price: {calculateTotalPrice(startDate, endDate, product.pricePerDay)} EUR</p>
-              <p>Contact Details: {product.owner && product.owner.contactDetails}</p>
+              <p>Contact Details: {owner} </p>
+              {/* <p>Contact Details: {product.owner && product.owner.contactDetails}</p> */}
+            </div>
+            <div className="BtnWrapper">
+                <Link to={`/products`}>
+                    <button>Keep exploring</button>
+                </Link>
             </div>
           </div>
         ) : (
