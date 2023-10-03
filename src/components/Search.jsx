@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context"; 
+import { Form, FormControl, Button } from "react-bootstrap"; 
 
 const API_URL = "http://localhost:5005";
 
@@ -41,14 +42,30 @@ function Search({ onSearch }) {
 
   return (
     <div className="SearchContainer">
-      <input
+        <Form inline>
+        <FormControl
+          type="text"
+          placeholder="Search products..."
+          value={keyword}
+          onChange={handleSearchInputChange}
+          className="mr-sm-2"
+        />
+        <Button variant="outline-success" onClick={handleSearch}>
+          Search
+        </Button>
+        <Button variant="outline-secondary" onClick={handleReset}>
+          Reset
+        </Button>
+      </Form>
+        
+      {/* <input
         type="text"
         placeholder="Search products..."
         value={keyword}
         onChange={handleSearchInputChange}
       />
       <button onClick={handleSearch}>Search</button>
-      <button onClick={handleReset}>Reset</button>
+      <button onClick={handleReset}>Reset</button> */}
     </div>
   );
 }

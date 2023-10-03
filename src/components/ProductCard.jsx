@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import EditProduct from "./EditProduct";
 
 
 const API_URL = "http://localhost:5005";
@@ -39,23 +40,23 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
         setIsEditing(true);
     };
 
-    const handleSave = () => {
+    // const handleSave = () => {
     
-        const storedToken = localStorage.getItem("authToken");
+    //     const storedToken = localStorage.getItem("authToken");
     
-        axios
-          .put(`${API_URL}/products/${_id}`, editedProductData, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then((response) => {
-            console.log("Product updatesd:", response.data);
-            setIsEditing(false);
-            onUpdateProduct(response.data);
-          })
-          .catch((error) => {
-            console.error("Error updating the product:", error);
-          });
-      };
+    //     axios
+    //       .put(`${API_URL}/products/${_id}`, editedProductData, {
+    //         headers: { Authorization: `Bearer ${storedToken}` },
+    //       })
+    //       .then((response) => {
+    //         console.log("Product updatesd:", response.data);
+    //         setIsEditing(false);
+    //         onUpdateProduct(response.data);
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error updating the product:", error);
+    //       });
+    //   };
 
     // const handleImageChange = (e) => {
         
@@ -77,13 +78,13 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
       
     //   };
 
-    const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0];
-        setEditedProductData({
-          ...editedProductData,
-          mediaUrl: selectedImage ? URL.createObjectURL(selectedImage) : ""
-        });
-      };
+    // const handleImageChange = (e) => {
+    //     const selectedImage = e.target.files[0];
+    //     setEditedProductData({
+    //       ...editedProductData,
+    //       mediaUrl: selectedImage ? URL.createObjectURL(selectedImage) : ""
+    //     });
+    //   };
     
       const handleCancel = () => {
         setEditedProductData({
@@ -117,33 +118,38 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
         });
       };
 
-    return (
-        <div className="ProductCardContainer">
-            {isOwner && (
-                <div className="IconsWrapper">
-                    {/* {isEditing ? (
-                    <button onClick={handleSave}>Save</button>
-                    ) : ( */}
-                    <img src={EditIconBlack} onClick={handleEdit} />
-                    {/* )} */}
-                    <img src={DeleteBnt} onClick={handleDelete} />  
+    // return (
+    //     <div className="ProductCardContainer">
+    //         {isOwner && (
+    //             <div className="IconsWrapper">
+    //                 {/* {isEditing ? (
+    //                 <button onClick={handleSave}>Save</button>
+    //                 ) : ( */}
+    //                 <img src={EditIconBlack} onClick={handleEdit} />
+    //                 {/* )} */}
+    //                 <img src={DeleteBnt} onClick={handleDelete} />  
 
-                    <div>
-                <h2>{productName}</h2>
-                <img src={mediaUrl} alt={productName} />
-                <p>{description}</p>
-                <h4>{pricePerDay} <span>EUR/day</span></h4>
+    //                 <div>
+    //             <h2>{productName}</h2>
+    //             <img src={mediaUrl} alt={productName} />
+    //             <p>{description}</p>
+    //             <h4>{pricePerDay} <span>EUR/day</span></h4>
                 
                
-            </div> 
+    //         </div> 
                      
-                </div>
-            )}
+    //             </div>
+    //         )}
 
-            {isEditing ? (
+    //         {isEditing ? (
                 
-                <div className="EditProductContainer">
-                <label htmlFor="productName">Product Name:</label>
+    //             <div className="EditProductContainer">
+    //                 <EditProduct
+    //                     _id={_id}
+    //                     onUpdateProduct={onUpdateProduct}
+    //                     onCancelEdit={() => setIsEditing(false)}
+    //                 />
+                {/* <label htmlFor="productName">Product Name:</label>
                 <input
                     type="text"
                     id="productName"
@@ -276,28 +282,66 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
                     onChange={handleImageChange}
                 />
                 <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-            </div>
+                <button onClick={handleCancel}>Cancel</button> */}
+//             </div>
 
 
-             ) : (
-            <div>
-                <h2>{productName}</h2>
-                <img src={mediaUrl} alt={productName} />
-                <p>{description}</p>
-                <h4>{pricePerDay} <span>EUR/day</span></h4>
+//              ) : (
+//             <div>
+//                 <h2>{productName}</h2>
+//                 <img src={mediaUrl} alt={productName} />
+//                 <p>{description}</p>
+//                 <h4>{pricePerDay} <span>EUR/day</span></h4>
                 
-                <Link to={`/renting/${_id}`}>
-                    <button>Rent</button>
-                </Link>
+//                 <Link to={`/renting/${_id}`}>
+//                     <button>Rent</button>
+//                 </Link>
                
-            </div>
-            )}
+//             </div>
+//             )}
             
-        </div>
+//         </div>
 
      
-    )
+//     )
+return (
+    <div className="ProductCardContainer">
+      {isOwner && (
+        <div className="IconsWrapper">
+          {isEditing ? (
+            <div className="EditProductContainer">
+              <EditProduct
+                _id={_id}
+                onUpdateProduct={onUpdateProduct}
+                onCancelEdit={() => setIsEditing(false)}
+              />
+            </div>
+          ) : (
+            <>
+              <img src={EditIconBlack} onClick={handleEdit} />
+              <img src={DeleteBnt} onClick={handleDelete} />
+            </>
+          )}
+        </div>
+      )}
+  
+      <div>
+        <h2>{productName}</h2>
+        <img src={mediaUrl} alt={productName} />
+        <p>{description}</p>
+        <h4>
+          {pricePerDay} <span>EUR/day</span>
+        </h4>
+  
+        {!isOwner && (
+          <Link to={`/renting/${_id}`}>
+            <button>Rent</button>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+  
 }
 
 export default ProductCard;
