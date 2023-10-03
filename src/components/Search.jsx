@@ -11,7 +11,7 @@ function Search({ onSearch }) {
   const handleSearch = () => {
     const storedToken = localStorage.getItem('authToken');
     axios
-      .post(`${API_URL}/products/search`, { keyword }, { headers: { Authorization: `Bearer ${storedToken}`} } )
+      .post(`${API_URL}/products/search/keyword`, { keyword }, { headers: { Authorization: `Bearer ${storedToken}`} } )
       .then((response) => {
         onSearch(response.data);
       })

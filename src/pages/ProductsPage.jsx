@@ -4,12 +4,16 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context"; 
 import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
+import SearchByCategory from "../components/SearchByCategory";
 
 const API_URL = "http://localhost:5005";
 
 function ProductsPage () {
     const [products, setProducts] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [searchByCategory, setSearchByCategory] = useState([]);
+
+    const [originalProducts, setOriginalProducts] = useState([]);
 
     const getAllProducts = () => {
         axios
@@ -41,61 +45,75 @@ function ProductsPage () {
         setSearchResults(results);
     };
 
+    const handleSearchByCategory = (categoryResults) => {
+        // const filteredProducts = products.filter(
+        //   (product) => product.category === category
+        // );
+        setSearchByCategory(categoryResults);
+      };
+
     return (
 
         <div className="ProductsListContainer">
 
-    {/* <Search /> here is the search compoenent with the search by category */}
-    <Search onSearch={handleSearchResults} />
+   
+            <Search onSearch={handleSearchResults} />
 
-
-        {searchResults.length > 0 ? (
-        <div>
-            <h2>Search Results:</h2>
-            <ul>
-            {searchResults.map((product) => (
-                <ProductCard
-                key={product._id}
-                onDeleteProduct={handleDeleteProduct}
-                onUpdateProduct={handleUpdateProduct}
-                productName={product.productName}
-                description={product.description}
-                pricePerDay={product.pricePerDay}
-                category={product.category}
-                availability={product.availability}
-                mediaUrl={product.mediaUrl}
-                location={product.location}
-                contactDetails={product.contactDetails}
-                owner={product.owner}
-                {...product}
-                />
-            ))}
-            </ul>
-        </div>
-        ) : (
-        
-        <ul>
-            {products.map((product) => (
-            <ProductCard
-                key={product._id}
-                onDeleteProduct={handleDeleteProduct}
-                onUpdateProduct={handleUpdateProduct}
-                productName={product.productName}
-                description={product.description}
-                pricePerDay={product.pricePerDay}
-                category={product.category}
-                availability={product.availability}
-                mediaUrl={product.mediaUrl}
-                location={product.location}
-                contactDetails={product.contactDetails}
-                owner={product.owner}
-                {...product}
+            <SearchByCategory 
+            // onSearch={handleSearchByCategory} 
+            onCategorySelect={handleSearchByCategory}
+            originalProducts={originalProducts}
             />
-            ))}
-        </ul>
-        )}
+
+
+            {searchResults.length > 0 || searchByCategory.length > 0 ? (
+        <div>
+          <h2>Search Results:</h2>
+          <ul>
+            {(searchResults.length > 0 ? searchResults : searchByCategory).map(
+              (product) => (
+                <ProductCard
+                  key={product._id}
+                  onDeleteProduct={handleDeleteProduct}
+                  onUpdateProduct={handleUpdateProduct}
+                  productName={product.productName}
+                  description={product.description}
+                  pricePerDay={product.pricePerDay}
+                  category={product.category}
+                  availability={product.availability}
+                  mediaUrl={product.mediaUrl}
+                  location={product.location}
+                  contactDetails={product.contactDetails}
+                  owner={product.owner}
+                  {...product}
+                />
+              )
+            )}
+          </ul>
         </div>
-        );
-        }
+      ) : (
+        <ul>
+          {products.map((product) => (
+            <ProductCard
+              key={product._id}
+              onDeleteProduct={handleDeleteProduct}
+              onUpdateProduct={handleUpdateProduct}
+              productName={product.productName}
+              description={product.description}
+              pricePerDay={product.pricePerDay}
+              category={product.category}
+              availability={product.availability}
+              mediaUrl={product.mediaUrl}
+              location={product.location}
+              contactDetails={product.contactDetails}
+              owner={product.owner}
+              {...product}
+            />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default ProductsPage;
