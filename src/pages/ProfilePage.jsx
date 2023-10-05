@@ -8,7 +8,7 @@ import EditProfile from "../components/EditProfile";
 import EditProduct from "../components/EditProduct";
 import EditIconBlack from "../assets/images/icons/edit-icon-black.png";
 import DeleteBnt from "../assets/images/icons/delete-icon.png";
-import VideoProfile from "../assets/videos/video-garbicz.mp4";
+import VideoProfile from "../assets/videos/videoProfile.mp4";
 import LogOutIcon from "../assets/images/icons/logout-icon.png";
 
 
