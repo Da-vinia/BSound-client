@@ -421,7 +421,7 @@ footer {
   display: flex;
   flex-direction: row !important;
   align-items: center;
-  margin-top: 0px auto;
+  margin: 0px auto;
   padding: 30px;
   width: 80%;
 }
