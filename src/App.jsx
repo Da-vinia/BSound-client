@@ -8,8 +8,8 @@ import ProfilePage from "./pages/ProfilePage";
 import ProductsPage from "./pages/ProductsPage";
 import AddProductPage from "./pages/AddProductPage";
 import RentingPage from "./pages/RentingPage";
-
-
+import AboutUsPage from "./pages/AboutUsPage";
+import ErrorPage from "./pages/ErrorPage";
 function App() {
  
   return (
@@ -26,6 +26,8 @@ function App() {
           <Route path="/products" element={ <ProductsPage /> } />
           <Route path="/add" element={ <AddProductPage /> } />
           <Route path="/renting/:productId" element={ <RentingPage /> } />
+          <Route path="/about" element={ <AboutUsPage /> } />
+          <Route path="*" element={<ErrorPage />}></Route>
 
 
 

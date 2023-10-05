@@ -107,6 +107,7 @@ function EditProduct({ _id, onUpdateProduct, onCancelEdit }) {
           value={editedProductData.category}
           onChange={handleInputChange}
         >
+          <option value="">Choose a category</option>
           <option value="speakers">Speakers</option>
           <option value="microphones">Microphones</option>
           <option value="turntables">Turntables</option>
@@ -167,6 +168,7 @@ function EditProduct({ _id, onUpdateProduct, onCancelEdit }) {
           value={editedProductData.location.district}
           onChange={handleInputChange}
         >
+            <option value="">Choose a category</option>
             <option value="Mitte">Mitte</option>
             <option value="Friedrichshain-Kreuzberg">Friedrichshain-Kreuzberg</option>
             <option value="Pankow">Pankow</option>
@@ -197,8 +199,10 @@ function EditProduct({ _id, onUpdateProduct, onCancelEdit }) {
           onChange={handleImageChange}
         />
         <img src={image} alt="Product Preview" />
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <div className="edit-btn-wrapper">
+          <button onClick={handleSave}>Save</button>
+          <button onClick={handleCancel} className="cancel-btn">Cancel</button>
+        </div>
       </div>
     );
   }

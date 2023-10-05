@@ -30,7 +30,7 @@ function LoginPage(props) {
 
         storeToken(response.data.authToken); 
         authenticateUser(); 
-        navigate('/');                            
+        navigate('/products');                            
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -39,34 +39,38 @@ function LoginPage(props) {
   };
   
   return (
-    <div className="LoginPage">
-      <h1>Welcome back to the heartbeat of Berlin's music scene. Let's make some noise!</h1>
- 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input 
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-          placeholder="email@email.com"
-        />
- 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-          placeholder="******"
-        />
- 
-        <button type="submit">Login</button>
-      </form>
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
- 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Join us here</Link>
+
+    <div className="container">
+      <div className="LoginPage">
+        <h1>Welcome back to the heartbeat of Berlin's music scene. <br /> Let's make some noise!</h1>
+  
+        <form id="login-form" onSubmit={handleLoginSubmit}>
+          <label>Email:</label>
+          <input 
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+            placeholder="email@email.com"
+          />
+  
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+            placeholder="******"
+          />
+          <div className="btn-wrapper">
+            <button type="submit">Login</button>
+          </div>
+          
+        </form>
+        { errorMessage && <p className="error-message">{errorMessage}</p> }
+        <p>Don't have an account yet?</p>
+        <Link to={"/signup"}> Join us here</Link>
+      </div>
     </div>
   )
 }

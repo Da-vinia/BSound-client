@@ -14,7 +14,7 @@ function ProductsPage () {
     const [searchByCategory, setSearchByCategory] = useState([]);
 
     const [originalProducts, setOriginalProducts] = useState([]);
-
+    const [query, setQuery] = useState("")
     const getAllProducts = () => {
         axios
             .get(`${API_URL}/products`)
@@ -30,6 +30,17 @@ function ProductsPage () {
         setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
     };
 
+
+    const getFilteredItems = (query, items)=> {
+      if(!query){
+        return items
+      }
+      const lowercaseQuery = query.toLowerCase();
+      return products.filter((product) => product.productName.toLowerCase().includes(lowercaseQuery))
+    }
+
+    const filteredItems = getFilteredItems(query, products)
+    console.log(filteredItems)
     const handleUpdateProduct = (updatedProduct) => {
         
         const updatedIndex = products.findIndex((product) => product._id === updatedProduct._id);
@@ -40,7 +51,7 @@ function ProductsPage () {
           setProducts(updatedProducts);
         }
       };
-
+    
     const handleSearchResults = (results) => {
         setSearchResults(results);
     };
@@ -53,23 +64,35 @@ function ProductsPage () {
       };
 
     return (
-
+      
         <div className="ProductsListContainer">
-
-   
+          <div className="productsList-wrapper">
+{/*    
             <Search onSearch={handleSearchResults} />
+          */}
+          <div className="SearchContainer">
+            <form>
+              <input 
+                type="text"
+                placeholder="Search products..."
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </form>
+          </div>
+
+          
 
             <SearchByCategory 
-            // onSearch={handleSearchByCategory} 
+            onSearch={handleSearchByCategory} 
             onCategorySelect={handleSearchByCategory}
             originalProducts={originalProducts}
             />
 
-
             {searchResults.length > 0 || searchByCategory.length > 0 ? (
         <div>
-          <h2>Search Results:</h2>
-          <ul>
+          {/* <h2>Search Results:</h2> */}
+          {/* <ul> */}
+            <div className="productCards-container">
             {(searchResults.length > 0 ? searchResults : searchByCategory).map(
               (product) => (
                 <ProductCard
@@ -89,11 +112,13 @@ function ProductsPage () {
                 />
               )
             )}
-          </ul>
+            </div>
+          {/* </ul> */}
         </div>
       ) : (
-        <ul>
-          {products.map((product) => (
+        <div className="productCards-container">
+        {/* <ul> */}
+          {filteredItems.map((product) => (
             <ProductCard
               key={product._id}
               onDeleteProduct={handleDeleteProduct}
@@ -110,8 +135,10 @@ function ProductsPage () {
               {...product}
             />
           ))}
-        </ul>
+        {/* </ul> */}
+        </div>
       )}
+    </div>
     </div>
   );
 }

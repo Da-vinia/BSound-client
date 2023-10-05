@@ -85,30 +85,54 @@ function RentingPage() {
     };
   
     return (
+      <div className="container">
       <div className="RentingPageContainer">
         {bookingConfirmed ? (
           <div className="BookingConfirmation">
-            <h2>Your music sounds better with us!</h2>
-            <p>Thank you for choosing us for your musical rental!</p>
-            <div className="BookingDetails">
-              <h3>Booking Details</h3>
-              <p>Product: {product.productName}</p>
-              <img src={product.mediaUrl} alt={product.productName} />
-              <p>Dates: {startDate.toDateString()} to {endDate.toDateString()}</p>
-              <p>Total Price: {calculateTotalPrice(startDate, endDate, product.pricePerDay)} EUR</p>
-              <p>Contact Details: {owner} </p>
-              {/* <p>Contact Details: {product.owner && product.owner.contactDetails}</p> */}
-            </div>
-            <div className="BtnWrapper">
-                <Link to={`/products`}>
-                    <button>Keep exploring</button>
-                </Link>
-            </div>
+            <h2>Thank you for choosing us for your musical rental!</h2>
+            <p>Your music sounds better with us!</p>
+              <div className="confirmation-wrapper">
+                <div className="BookingDetails">
+                  <h3>Booking Details</h3>
+                  <div className="ProductName-wrapper">
+                    <p> {product.productName}</p>
+                  </div>
+                  <div className="Confirmation-flex">
+                      <div className="ConfirmationImage-wrapper">
+                      <img src={product.mediaUrl} alt={product.productName} />
+                    </div>
+                    
+                    <div className="ConfirmationDetails-wrapper">
+                      <p> Rent From <br />
+                        <span> 
+                          {startDate.toDateString()} to {endDate.toDateString()}
+                        </span>
+                      </p>
+                      <div className="total-price">
+                        <p>Total - {calculateTotalPrice(startDate, endDate, product.pricePerDay)} EUR</p>
+                      </div>
+                      <div className="contact-details">
+                        <p>Contact Details: {owner} </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <p>Contact Details: {product.owner && product.owner.contactDetails}</p> */}
+                </div>
+                <div className="BtnWrapper">
+                    <Link to={`/products`}>
+                        <button>Keep exploring</button>
+                    </Link>
+                </div>
+              </div>
           </div>
         ) : (
+          <div className="RentingContainer">
+          <h1>Select Reservation Dates</h1>
           <div className="ProductDetails">
             <h2>{product.productName}</h2>
-            <img src={product.mediaUrl} alt={product.productName} />
+            <div className="booking-img">
+              <img src={product.mediaUrl} alt={product.productName} />
+            </div>
             <p>{product.description}</p>
             <div className="DatePickers">
               <label>Start Date:</label>
@@ -129,11 +153,18 @@ function RentingPage() {
                 required
               />
             </div>
+            <div className="non-available-dates">
             {!isAvailable && <p>Dates are not available</p>}
-            <button onClick={handleConfirmBooking}>Confirm Booking</button>
+            </div>
+            <div className="confirm-btn">
+              <button onClick={handleConfirmBooking}>Confirm Booking</button>
+            </div>
+            </div>
           </div>
         )}
       </div>
+      </div>
+      
     );
 }
 

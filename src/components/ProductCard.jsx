@@ -39,6 +39,10 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
     const handleEdit = () => {
         setIsEditing(true);
     };
+  
+  
+   
+  
 
     // const handleSave = () => {
     
@@ -306,10 +310,11 @@ function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, own
 //     )
 return (
     <div className="ProductCardContainer">
+      <div className="productCard-wrapper">
       {isOwner && (
         <div className="IconsWrapper">
           {isEditing ? (
-            <div className="EditProductContainer">
+            <div className={`EditProductContainer ${isEditing ? 'popup-form' : ''}`}>
               <EditProduct
                 _id={_id}
                 onUpdateProduct={onUpdateProduct}
@@ -327,18 +332,29 @@ return (
   
       <div>
         <h2>{productName}</h2>
-        <img src={mediaUrl} alt={productName} />
-        <p>{description}</p>
-        <h4>
-          {pricePerDay} <span>EUR/day</span>
-        </h4>
-  
+        <div className="card-flex">
+          <div className="img-card-wrapper">
+            <img src={mediaUrl} alt={productName} />
+          </div>
+          <div className="content-card-wrapper">
+            <p>{description}</p>
+            <h4>
+              {pricePerDay} <span>EUR/day</span>
+            </h4>
+        </div>
+        </div>
+       
+            
         {!isOwner && (
-          <Link to={`/renting/${_id}`}>
-            <button>Rent</button>
-          </Link>
+          <div className="rent-btn-wrapper">
+            <Link to={`/renting/${_id}`}>
+              <button>Rent</button>
+            </Link>
+          </div>
+          
         )}
       </div>
+    </div>
     </div>
   );
   

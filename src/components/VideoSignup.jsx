@@ -5,7 +5,7 @@ function VideoSignup() {
         <div className="VideoSignup">
             <video autoPlay loop muted>
                 <source src={videoSignup} type="video/mp4" />
-                Tu navegador no admite la reproducción de video.
+                Your browser does not support video playback.
             </video>
         </div>
     );

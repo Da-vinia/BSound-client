@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context"; 
 import { Form, FormControl, Button } from "react-bootstrap"; 
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_URL = "http://localhost:5005";
 
@@ -10,6 +11,7 @@ function Search({ onSearch }) {
   const [originalProducts, setOriginalProducts] = useState([]);
 
   const handleSearch = () => {
+
     const storedToken = localStorage.getItem('authToken');
     axios
       .post(`${API_URL}/products/search/keyword`, { keyword }, { headers: { Authorization: `Bearer ${storedToken}`} } )
@@ -20,6 +22,7 @@ function Search({ onSearch }) {
         console.error("Error searching for products:", error);
       });
   };
+
   const handleReset = () => {
     setKeyword("");
     onSearch(originalProducts);
@@ -28,7 +31,7 @@ function Search({ onSearch }) {
   const handleSearchInputChange = (e) => {
     setKeyword(e.target.value);
   };
-
+  console.log(keyword)
   React.useEffect(() => {
     axios
       .get(`${API_URL}/products`)
@@ -42,21 +45,36 @@ function Search({ onSearch }) {
 
   return (
     <div className="SearchContainer">
-        <Form inline>
-        <FormControl
+        {/* <Form inline> */}
+          <form>
+            <input 
+              type="text"
+              placeholder="Search products..."
+              value={keyword}
+              onChange={handleSearchInputChange}
+             />
+            <button className="search-tbn" onClick={handleSearch}>
+                Search
+            </button>
+            <button className="reset-tbn" onClick={handleReset}>
+               Reset
+            </button>
+          </form>
+        {/* <FormControl
           type="text"
           placeholder="Search products..."
           value={keyword}
           onChange={handleSearchInputChange}
           className="mr-sm-2"
-        />
-        <Button variant="outline-success" onClick={handleSearch}>
+        /> */}
+        
+        {/* <Button variant="outline-success" onClick={handleSearch}>
           Search
         </Button>
         <Button variant="outline-secondary" onClick={handleReset}>
           Reset
-        </Button>
-      </Form>
+        </Button> */}
+      {/* </Form> */}
         
       {/* <input
         type="text"

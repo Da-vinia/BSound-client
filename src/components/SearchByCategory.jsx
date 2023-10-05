@@ -49,14 +49,21 @@ function SearchByCategory({ onCategorySelect, originalProducts }) {
     
 
     return (
-        <div>
-          <h1>Here you can search by category</h1>
+
+      <div className="searchByCategory-container">
+        <div className="searchCategory-wrapper">
+          <h1>Here you can search by category:</h1>
           <div className="category-buttons">
             {categories.map((category) => (
               <div key={category.slug} onClick={() => handleCategoryClick(category.slug)} className="category-button">
                 <div className="category-img-wrapper">
-                    <img src={category.icon} alt={category.name} />
-                    <span>{category.name}</span>
+                    <div className="category-image">
+                      <img src={category.icon} alt={category.name} />
+                    </div>
+                     <div className="category-name">
+                      <span>{category.name}</span>
+                    </div>
+                    
                 </div>
                 
               </div>
@@ -78,6 +85,7 @@ function SearchByCategory({ onCategorySelect, originalProducts }) {
               ))}
             </ul>
           )} */}
+        </div>
         </div>
       );
 }

@@ -151,7 +151,7 @@ const handleImage = (e) => {
 
     return (
         <div className="AddProductContainer">
-            <h2>Add your soundgear</h2>
+            <h1>Add your soundgear</h1>
 
             <form onSubmit={handleAddProduct} encType="multipart/form-data">
             
@@ -242,6 +242,7 @@ const handleImage = (e) => {
                     value={locationDistrict}
                     onChange={(e) => setLocationDistrict(e.target.value)}
                 >
+                <option value="">Choose a category</option>
                 <option value="Mitte">Mitte</option>
                 <option value="Friedrichshain-Kreuzberg">Friedrichshain-Kreuzberg</option>
                 <option value="Pankow">Pankow</option>
@@ -276,8 +277,10 @@ const handleImage = (e) => {
                 multiple 
                 required
             />
-
-            <button type="submit">Add your soundgear</button>
+                <div className="add-btn">
+                    <button type="submit">Add your soundgear</button>
+                </div>
+            
             </form>
 
         </div>

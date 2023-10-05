@@ -80,10 +80,12 @@ function EditProfile({ onCloseEdit, handleProfileFetch }) {
     return(
 
         <div className={`EditFormContainer ${showForm ? '' : 'hidden'}`}>
-
-            <div className="closeBtn">
-                <img onClick={handleCloseEditForm} src={CloseBtn} alt="close button" />
+            <div className="closeBtn-wrapper">
+                <div className="closeBtn">
+                    <img onClick={handleCloseEditForm} src={CloseBtn} alt="close button" />
+                </div>
             </div>
+            
             <h2>Edit your profile</h2>
 
  
@@ -125,8 +127,9 @@ function EditProfile({ onCloseEdit, handleProfileFetch }) {
                 onChange={handleAvatar}
             />
              <img src={avatar} alt="Avatar Preview" />
-
-            <button type="submit">Save</button>
+            <div  className="save-btn">
+                <button type="submit">Save</button>
+            </div>
             </form>
         </div>
     )
