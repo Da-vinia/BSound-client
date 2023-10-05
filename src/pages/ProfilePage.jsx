@@ -13,7 +13,7 @@ import LogOutIcon from "../assets/images/icons/logout-icon.png";
 
 
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://bsound.onrender.com";
 
 function ProfilePage(props) {
     // const { userId } = useParams();
@@ -160,7 +160,7 @@ function ProfilePage(props) {
                                     </div>
                                     <div className="ProfileCard-details">
                                         <h3>{product.productName}</h3>
-                                        <p>{product.description}</p>
+                                        {/* <p>{product.description}</p> */}
                                         <p>Price: {product.pricePerDay} EUR/day</p>
                                     </div>
                                     <div className="ProfileCard-buttons">

@@ -4,7 +4,7 @@ import axios from "axios";
 import VideoSignup from "../components/VideoSignup";
 
  
-const API_URL = "http://localhost:5005";
+const API_URL = "https://bsound.onrender.com";
  
  
 function SignupPage(props) {
@@ -76,14 +76,16 @@ function SignupPage(props) {
                     onChange={handlePassword}
                     placeholder="******"
                 />
-
-                <button type="submit">Join</button>
+                <div className="join-btn">
+                    <button type="submit">Join</button>
+                </div>
                 </form>
 
                 { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-                <p>If you already have an account...</p>
-                <Link to={"/login"}> Login here</Link>
+                <div className="signup-text-wrap">
+                    <p>If you already have an account...</p>
+                    <Link to={"/login"}> Login here</Link>
+                </div>
             </div>
         </div>
     </div>     

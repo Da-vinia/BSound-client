@@ -5,7 +5,7 @@ import ProfilePage from "../pages/ProfilePage";
 import DefaultAvatar from "../assets/images/avatar-default.png";
 import CloseBtn from "../assets/images/icons/icon-close-btn.png"
  
-const API_URL = "http://localhost:5005";
+const API_URL = "https://bsound.onrender.com";
  
 function EditProfile({ onCloseEdit, handleProfileFetch }) {
 

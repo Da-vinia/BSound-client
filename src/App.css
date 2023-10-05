@@ -229,7 +229,6 @@ footer {
   height: 100vh;
   display: flex;
   align-items: center;
-
 }
 .LoginPage, .AddProductContainer, .RentingPageContainer {
   display: flex;
@@ -266,6 +265,7 @@ footer {
   border-radius: 15px;
   background-color: #E5E5E5 !important;
   padding: 20px 10px;
+  font-size: 20px;
 }
 #login-form  input[type="email" i]:focus, 
 #login-form input[type="password" i],
@@ -421,18 +421,21 @@ footer {
   display: flex;
   flex-direction: row !important;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0px auto;
   padding: 30px;
+  width: 80%;
 }
 .videoContainer {
   width: 50%;
   height: 100%;
-  padding: 20px;
 }
 .formContainer {
   width: 50%;
   padding: 20px;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .formContainer h1 {
   color: #32FFDA;
@@ -441,7 +444,7 @@ footer {
 .formContainer form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
 }
 .formContainer button {
   margin: 30px 0px !important;
@@ -456,6 +459,21 @@ footer {
 .VideoSignup video {
   width: 100%;
   border-radius: 15px;
+}
+.join-btn {
+  display: flex;
+  justify-content: center;
+}
+.signup-text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+.error-message p {
+  text-align: center;
+  color:#F31559;
 }
 /* products page */
 .ProductsListContainer {
@@ -775,7 +793,7 @@ footer {
   height: auto;
 }
 .EditFormContainer {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const API_URL = "http://localhost:5005"; 
+const API_URL = "https://bsound.onrender.com"; 
 
 function AddProductPage() {
     const [productName, setProductName] = useState("");

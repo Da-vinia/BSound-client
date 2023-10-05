@@ -61,7 +61,7 @@ function AboutUsPage() {
                     <Link to="https://soundcloud.com" className="contact-link">
                         <FontAwesomeIcon icon={faSoundcloud} />
                     </Link>
-                    <Link to="https://github.com/Da-viniawww.linkedin.com/in/davinia-tosco-abreu" className="contact-link">
+                    <Link to="https://github.com/Da-vinia" className="contact-link">
                         <FontAwesomeIcon icon={faGithub} />
                     </Link>
                     <Link to="https://www.linkedin.com/in/davinia-tosco-abreu" className="contact-link">

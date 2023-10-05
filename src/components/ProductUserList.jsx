@@ -10,7 +10,7 @@
 //   useEffect(() => {
 //     const storedToken = localStorage.getItem('authToken');
 
-//     axios.get(`http://localhost:5005/profile`, { headers: { Authorization: `Bearer ${storedToken}`} })
+//     axios.get(`https://bsound.onrender.com/profile`, { headers: { Authorization: `Bearer ${storedToken}`} })
 //       .then((response) => {
 //         setUserProducts(response.data);
 //       })

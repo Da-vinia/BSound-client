@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
 import SearchByCategory from "../components/SearchByCategory";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://bsound.onrender.com";
 
 function ProductsPage () {
     const [products, setProducts] = useState([]);
