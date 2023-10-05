@@ -26,7 +26,8 @@ function SignupPage(props) {
     
         axios.post(`${API_URL}/auth/signup`, requestBody)
         .then((response) => {
-            navigate('/login');
+            console.log('Response from server:', response);
+            navigate('/products');
         })
         .catch((error) => {
             const errorDescription = error.response.data.message;
@@ -38,52 +39,54 @@ function SignupPage(props) {
   
   return (
     
-    <div className="SignupPage">
+    <div className="container">
+        <div className="SignupPage">
 
-        <div className="videoContainer">
-            <VideoSignup />
+            <div className="videoContainer">
+                <VideoSignup />
+            </div>
+
+            <div className="formContainer">
+                <h1>Unlock the Sound of Berlin. Join Us Now!</h1>
+    
+                <form onSubmit={handleSignupSubmit}>
+                <label>Name:</label>
+                <input 
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleName}
+                    placeholder="My Name"
+                />
+
+                <label>Email:</label>
+                <input 
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={handleEmail}
+                    placeholder="email@email.com"
+                />
+
+                <label>Password:</label>
+                <input 
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={handlePassword}
+                    placeholder="******"
+                />
+
+                <button type="submit">Join</button>
+                </form>
+
+                { errorMessage && <p className="error-message">{errorMessage}</p> }
+
+                <p>If you already have an account...</p>
+                <Link to={"/login"}> Login here</Link>
+            </div>
         </div>
-
-        <div className="formContainer">
-            <h1>Unlock the Sound of Berlin. Join Us Now!</h1>
- 
-            <form onSubmit={handleSignupSubmit}>
-            <label>Name:</label>
-            <input 
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleName}
-                placeholder="My Name"
-            />
-
-            <label>Email:</label>
-            <input 
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleEmail}
-                placeholder="email@email.com"
-            />
-
-            <label>Password:</label>
-            <input 
-                type="password"
-                name="password"
-                value={password}
-                onChange={handlePassword}
-                placeholder="******"
-            />
-
-            <button type="submit">Join</button>
-            </form>
-
-            { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-            <p>If you already have an account...</p>
-            <Link to={"/login"}> Login here</Link>
-        </div>
-</div>
+    </div>     
      
     
   )

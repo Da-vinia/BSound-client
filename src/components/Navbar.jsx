@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context";  
+import LogoNavbar from "../assets/images/logo-green.png";
+import AddIcon from "../assets/images/icons/plus-icon (1).png";
+import ProfileIcon from "../assets/images/icons/face-icon.png";
+import MusicalNoteIcon from "../assets/images/icons/musicalNote-icon (2).png";
  
 function Navbar() {
 
@@ -12,26 +16,45 @@ function Navbar() {
   
   return (
     <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
- 
-      
+      <div className="Navbar-wrapper">
+      <div className="Logo-wrapper">
+        <Link to="/" className="logo-navbar"> 
+          <img src={LogoNavbar}  />
+        </Link>
+      </div>
+  
       {isLoggedIn && (
-        <>
-          <Link to="/rentals">
-            <button>Something to rent</button>
-          </Link>        
-          <button>Logout</button>
-        </>
+  
+        <div className="Navbar-links">
+
+          <Link to="/products" className="navbar-links">
+            Soundgear Rentals
+            <img src={MusicalNoteIcon} />
+          </Link>  
+         
+            {/* <button onClick={logOutUser} >Logout</button> */}
+            <Link to="/add" className="navbar-links"> 
+              Add your soundgear
+              <img src={AddIcon} />
+            </Link>
+          
+            <Link to="/profile" className="navbar-links"> 
+              Profile
+              <img src={ProfileIcon} />
+            </Link>
+
+           
+           
+          </div>
       )}
  
       {!isLoggedIn && (
-        <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
-        </>
+        <div className="Navbar-links">
+          <Link to="/login" className="Login"> Login </Link>
+          <Link to="/signup" className="SignUp"> Sign Up</Link>
+        </div>
       )}
+      </div>
     </nav>
   );
 }
