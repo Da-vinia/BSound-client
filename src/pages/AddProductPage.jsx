@@ -242,7 +242,7 @@ const handleImage = (e) => {
                     value={locationDistrict}
                     onChange={(e) => setLocationDistrict(e.target.value)}
                 >
-                <option value="">Choose a category</option>
+                <option value="">Choose a district</option>
                 <option value="Mitte">Mitte</option>
                 <option value="Friedrichshain-Kreuzberg">Friedrichshain-Kreuzberg</option>
                 <option value="Pankow">Pankow</option>
