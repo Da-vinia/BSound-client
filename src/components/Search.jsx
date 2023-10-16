@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { Form, FormControl, Button } from "react-bootstrap"; 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-const API_URL = "https://bsound.onrender.com/api";
+const API_URL = "https://bsound.onrender.com";
 
 function Search({ onSearch }) {
   const [keyword, setKeyword] = useState("");

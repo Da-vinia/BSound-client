@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import EditProduct from "./EditProduct";
 
 
-const API_URL = "https://bsound.onrender.com/api";
+const API_URL = "https://bsound.onrender.com";
 
 function ProductCard( {productName, description, _id, mediaUrl, pricePerDay, owner, onDeleteProduct, onUpdateProduct}) {
     const { user } = useContext(AuthContext);
