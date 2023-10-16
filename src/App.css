@@ -556,6 +556,13 @@ footer {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+/* 1 product per row */
+@media (max-width: 767px) {
+  .productCards-container {
+      grid-template-columns: 1fr;
+  }
+}
+
 .ProductCardContainer {
   border-radius: 5px; 
   background-color: #4E4848;
@@ -563,6 +570,10 @@ footer {
 }
 .ProductCardContainer:hover {
   filter: drop-shadow(0px 4px 4px #32FFDA);
+}
+.productCard-wrapper {
+  height: 100%;
+  display: flex;
 }
 .productCard-wrapper h2 {
   color: black;
@@ -585,6 +596,7 @@ footer {
 .card-flex {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 .img-card-wrapper {
   width: 50%;
