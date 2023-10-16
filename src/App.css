@@ -1212,11 +1212,21 @@ letter-spacing: 0.1em;
 .productsList-wrapper {
   width: 95%;
 }
+.productCard-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.IconsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
 .Logo-wrapper {
   width: 87px;
 }
 .Login, .SignUp {
-  font-size: 20px;
+  font-size: 25px;
 }
 .SearchContainer input[type=text i] {
   padding: 10px;
@@ -1228,7 +1238,92 @@ letter-spacing: 0.1em;
 .SearchContainer {
   margin-top: 20px;
 }
-
-
-
+.searchByCategory-container  {
+  margin-top: 20px;
+}
+.category-buttons {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center; 
+  gap: 10px; 
+}
+.category-buttons > :last-child {
+  justify-self: center; 
+  grid-column: span 3; 
+}
+.SearchContainer input[type=text i] {
+  width: 80%;
+}
+.productCards-container {
+  margin: 40px 20px;
+}
+.productCard-wrapper h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+.productCard-wrapper p {
+  font-size: 16px;
+  line-height: 18px;
+}
+.content-card-wrapper span {
+  font-size: 16px;
+}
+.content-card-wrapper {
+  margin-bottom: 20px;
+}
+.Navbar-wrapper {
+  width: 90%;
+  margin: 5px auto;
+}
+.LoginPage {
+  width: 90%;
+  padding-top: 20px;
+}
+.LoginPage form {
+  width: 100%;
+}
+.SignupPage {
+  width: 90%;
+  padding: 0px;
+}
+.videoContainer {
+  width: 100%;
+}
+.formContainer {
+  width: 100%;
+  padding: 0px; 
+  margin-left: 0px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.formContainer form {
+  width: 100%;
+}
+.signup-text-wrap {
+  width: 100%;
+}
+.TextHeroWrapper {
+  top: 10%;
+  width: 95%;
+  padding: 40px 0px
+}
+.TextHeroWrapper h1 {
+  font-size: 50px;
+  line-height: 52px;
+  margin:15px;
+}
+.TextHeroWrapper p {
+  margin: 15px;
+}
+footer p {
+  font-size: 14px;
+}
+.SocialMedia-links a {
+  font-size: 14px;
+}
+.Homepage-link {
+  font-size: 25px;
+}
 }
