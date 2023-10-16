@@ -22,7 +22,7 @@ function ProfilePage(props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [avatar, setAvatar] = useState("");
+    const [avatar, setAvatar] = useState(DefaultAvatar);
     const [isEditing, setIsEditing] = useState(false);
 
     const [userId, setUserId] = useState("");

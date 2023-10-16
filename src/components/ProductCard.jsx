@@ -330,7 +330,7 @@ return (
         </div>
       )}
   
-      <div>
+      <div className="card-content-wrapper">
         <h2>{productName}</h2>
         <div className="card-flex">
           <div className="img-card-wrapper">
