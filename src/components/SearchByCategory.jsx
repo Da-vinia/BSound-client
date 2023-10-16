@@ -7,7 +7,7 @@ import MicrophoneIcon from "../assets/images/icons/microphone-icon.png";
 import SpeakerIcon from "../assets/images/icons/speakers-icon.png";
 import TurntableIcon from "../assets/images/icons/turntable-icon.png";
 
-const API_URL = "https://bsound.onrender.com";
+const API_URL = "https://bsound.onrender.com/api";
 
 function SearchByCategory({ onCategorySelect, originalProducts }) {
     const [selectedCategory, setSelectedCategory] = useState(null);

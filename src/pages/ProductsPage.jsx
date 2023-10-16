@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 import Search from "../components/Search";
 import SearchByCategory from "../components/SearchByCategory";
 
-const API_URL = "https://bsound.onrender.com";
+const API_URL = "https://bsound.onrender.com/api";
 
 function ProductsPage () {
     const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ function ProductsPage () {
     const [originalProducts, setOriginalProducts] = useState([]);
     const [query, setQuery] = useState("")
     const getAllProducts = () => {
-        axios
+        axios 
             .get(`${API_URL}/products`)
             .then((response) => setProducts(response.data))
             .catch((error) => console.log(error));

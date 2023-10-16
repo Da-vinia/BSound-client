@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const API_URL = "https://bsound.onrender.com"; 
+const API_URL = "https://bsound.onrender.com/api"; 
 
 function RentingPage() {
     const { user } = useContext(AuthContext);

@@ -4,7 +4,7 @@ import axios from "axios";
 import VideoSignup from "../components/VideoSignup";
 
  
-const API_URL = "https://bsound.onrender.com";
+const API_URL = "https://bsound.onrender.com/api";
  
  
 function SignupPage(props) {

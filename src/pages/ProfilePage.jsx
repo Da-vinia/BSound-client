@@ -13,7 +13,7 @@ import LogOutIcon from "../assets/images/icons/logout-icon.png";
 
 
 
-const API_URL = "https://bsound.onrender.com";
+const API_URL = "https://bsound.onrender.com/api";
 
 function ProfilePage(props) {
     // const { userId } = useParams();

@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const API_URL = "https://bsound.onrender.com";
+const API_URL = "https://bsound.onrender.com/api";
 
 function EditProduct({ _id, onUpdateProduct, onCancelEdit }) {
    //  const [editedProductData, setEditedProductData] = useState({ ...productData });
