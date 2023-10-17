@@ -777,7 +777,7 @@ footer {
 /* profile page */
 .ProfileContainer {
   display: flex;
-  flex-direction: row !important;
+  flex-direction: row;
   /* align-items: center; */
   justify-content: space-around;
   margin-top: 10%;
@@ -1400,7 +1400,16 @@ footer {
 .AddProductContainer {
   width: 100%;
 }
-
+.About-container {
+  flex-direction: column;
+}
+.about-us {
+  width: 100%;
+}
+.contact-wrapper {
+  width: 100%;
+  align-items: center;
+}
 
 }
 /* tablet */
@@ -1432,4 +1441,14 @@ footer {
   .profile-content {
     width: 50%;
   }
+  .About-container {
+    flex-direction: column;
+  }
+  .about-us {
+    width: 100%;
+}
+.contact-wrapper {
+  width: 100%;
+  align-items: center;
+}
 }
