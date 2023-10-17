@@ -1201,7 +1201,8 @@ letter-spacing: 0.1em;
   text-decoration: none;
   color: #242424;
 }
-/* tablet & movil */
+/* movil */
+
 @media (max-width: 767px) {
   .productCards-container {
       grid-template-columns: 1fr;
@@ -1275,6 +1276,7 @@ letter-spacing: 0.1em;
 .Navbar-wrapper {
   width: 90%;
   margin: 5px auto;
+  align-items: stretch;
 }
 .LoginPage {
   width: 90%;
@@ -1310,12 +1312,17 @@ letter-spacing: 0.1em;
   padding: 40px 0px
 }
 .TextHeroWrapper h1 {
-  font-size: 50px;
-  line-height: 52px;
-  margin:15px;
+  font-size: 45px;
+  line-height: 47px;
+  /* margin:15px; */
 }
 .TextHeroWrapper p {
-  margin: 15px;
+  font-size: 30px;
+  line-height: 32px;
+  /* margin: 15px; */
+}
+.containerHome {
+  align-items: flex-end;
 }
 footer p {
   font-size: 14px;
@@ -1325,5 +1332,28 @@ footer p {
 }
 .Homepage-link {
   font-size: 25px;
+  padding: 5px 10px;
 }
+
+
+}
+/* tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .containerHome {
+    align-items: center;
+  }
+  .TextHeroWrapper h1 {
+    font-size: 60px;
+    line-height: 62px;
+  }
+  .TextHeroWrapper p {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .Navbar-wrapper {
+    align-items: center;
+  }
+  footer {
+    padding: 10px;
+  }
 }
