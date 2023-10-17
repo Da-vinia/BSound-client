@@ -28,18 +28,24 @@ function Navbar() {
         <div className="Navbar-links">
 
           <Link to="/products" className="navbar-links">
-            Soundgear Rentals
+            <div className="text-nav">
+              Soundgear Rentals
+            </div>
             <img src={MusicalNoteIcon} />
           </Link>  
          
             {/* <button onClick={logOutUser} >Logout</button> */}
             <Link to="/add" className="navbar-links"> 
-              Add your soundgear
+              <div className="text-nav">
+                Add your soundgear
+              </div>
               <img src={AddIcon} />
             </Link>
           
             <Link to="/profile" className="navbar-links"> 
-              Profile
+              <div className="text-nav">
+                Profile
+              </div>
               <img src={ProfileIcon} />
             </Link>
 
