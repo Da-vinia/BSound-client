@@ -567,6 +567,7 @@ footer {
 .productCard-wrapper {
   height: 100%;
   display: flex;
+  flex-direction: column;
 }
 .productCard-wrapper h2 {
   color: black;
@@ -1201,8 +1202,8 @@ letter-spacing: 0.1em;
   text-decoration: none;
   color: #242424;
 }
-/* movil */
 
+/* movil */
 @media (max-width: 767px) {
   .productCards-container {
       grid-template-columns: 1fr;
@@ -1251,12 +1252,16 @@ letter-spacing: 0.1em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center; 
-  gap: 10px; 
+  gap: 15px; 
 }
 .category-buttons > :last-child {
   justify-self: center; 
   grid-column: span 3; 
   margin-top: 20px;
+}
+.category-img-wrapper, 
+.category-image {
+  height: auto;
 }
 .SearchContainer input[type=text i] {
   width: 80%;
@@ -1285,7 +1290,7 @@ letter-spacing: 0.1em;
 }
 .LoginPage {
   width: 90%;
-  padding-top: 20px;
+  margin-top: 10%;
 }
 .LoginPage form {
   width: 100%;
@@ -1293,10 +1298,12 @@ letter-spacing: 0.1em;
 .SignupPage {
   width: 90%;
   padding: 0px;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  margin-top: 20%;
 }
 .videoContainer {
   width: 100%;
+  margin-top: 5%;
 }
 .formContainer {
   width: 100%;
@@ -1350,7 +1357,7 @@ footer {
   display: flex;
 }
 .ProductsListContainer {
-  margin-top: 20%;
+  margin-top: 25%;
 }
 .avatar {
   width: 90px;
@@ -1364,6 +1371,7 @@ footer {
 }
 .ProfileContainer  {
   flex-direction: column;
+  margin-top: 20%;
 }
 .logout-wrapper {
   width: 20px;
@@ -1396,21 +1404,57 @@ footer {
 .AddProductContainer input[type=file i], 
 .ProductDetails input[type=text i] {
   font-size: 16px;
+  width: 90%;
+}
+.popup-form {
+  top: 0%;
+  left: 0%;
+  transform: translate(0%,-0%);
+  padding: 20px;
 }
 .AddProductContainer {
   width: 100%;
+  margin-top: 20%;
 }
 .About-container {
   flex-direction: column;
+  margin: 20% auto;
 }
 .about-us {
   width: 100%;
+}
+.contact-img {
+  width: auto;
+  height: auto;
 }
 .contact-wrapper {
   width: 100%;
   align-items: center;
 }
-
+.btn-wrapper button, 
+.formContainer button, 
+.add-btn button, 
+.save-btn button, 
+.confirm-btn button, 
+.BtnWrapper button, 
+.error-text-container button {
+  padding: 5px 15px;
+  font-size: 18px;
+}
+.RentingPageContainer {
+  width: 90%;
+  margin: 15% auto;
+}
+.RentingPageContainer {
+  display: block;
+}
+.Confirmation-flex {
+  display: block;
+}
+.BookingConfirmation h2 {
+  font-size: 35px;
+  margin: 20% auto;
+}
 }
 /* tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -1446,9 +1490,9 @@ footer {
   }
   .about-us {
     width: 100%;
-}
-.contact-wrapper {
-  width: 100%;
-  align-items: center;
-}
+  }
+  .contact-wrapper {
+    width: 100%;
+    align-items: center;
+  }
 }
